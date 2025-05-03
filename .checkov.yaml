@@ -1,0 +1,16 @@
+block-list-secret-scan: []
+branch: master
+compact: true
+directory:
+- ./
+download-external-modules: false
+evaluate-variables: true
+external-modules-download-path: .external_modules
+framework:
+- all
+mask: []
+quiet: true
+secrets-scan-file-type: []
+skip-check:
+- CKV_TF_1
+summary-position: top
