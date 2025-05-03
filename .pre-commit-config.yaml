@@ -1,0 +1,10 @@
+repos:
+  - repo: https://github.com/tofuutils/pre-commit-opentofu
+    rev: v2.2.0
+    hooks:
+    -   id: tofu_checkov
+        args:
+          - --args=--config-file __GIT_WORKING_DIR__/.checkov.yaml
+    -   id: tofu_fmt
+        files: \.(tf|tofu)(vars)?$
+        exclude: \.terraform\/.*$
