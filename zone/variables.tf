@@ -3,7 +3,7 @@ variable "account_id" {
   type        = string
 }
 
-variable "domain" {
+variable "zone_name" {
   description = "Domain name"
   type        = string
 }
