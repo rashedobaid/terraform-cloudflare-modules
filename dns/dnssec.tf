@@ -13,7 +13,7 @@ resource "cloudflare_dns_record" "dnssec" {
   } : {}
 
   zone_id = var.zone_id
-  name    = var.zone_name
+  name    = var.zone
   type    = "DS"
   ttl     = 1
   data = {
