@@ -3,7 +3,8 @@ output "record_hostnames_to_ids" {
   value = {
     for record in cloudflare_dns_record.records :
     (
-      record.name == "@" ? var.zone : "${record.name}.${var.zone}"
+      record.name == "@" ? var.zone : 
+      record.name == var.zone ? record.name : "${record.name}.${var.zone}"
     ) => record.id
   }
 }
