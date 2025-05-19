@@ -25,11 +25,11 @@ variable "dnssec" {
 variable "dnssec_presigned" {
   description = "Enable DNSSEC presigned"
   type        = bool
-  default     = null
+  default     = false
 }
 
 variable "dnssec_multi_signer" {
   description = "Enable DNSSEC multi-signer"
   type        = bool
-  default     = null
+  default     = false
 }
