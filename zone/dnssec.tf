@@ -21,5 +21,5 @@ resource "cloudflare_dns_record" "dnssec" {
   }
   comment = "Cloudflare DNSSEC"
 
-  depends_on = [cloudflare_zone_dnssec.dnssec]
+  depends_on = cloudflare_zone_dnssec.dnssec[0]
 }
