@@ -33,9 +33,3 @@ variable "dnssec_multi_signer" {
   type        = bool
   default     = null
 }
-
-variable "status" {
-  description = "Desired DNSSEC status: 'active' or 'disabled'."
-  type        = string
-  default     = "active"
-}

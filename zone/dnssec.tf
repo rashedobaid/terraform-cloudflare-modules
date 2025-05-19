@@ -4,7 +4,6 @@ resource "cloudflare_zone_dnssec" "dnssec" {
   zone_id             = cloudflare_zone.domain.id
   dnssec_multi_signer = var.dnssec_multi_signer
   dnssec_presigned    = var.dnssec_presigned
-  status              = var.status
 }
 
 resource "cloudflare_dns_record" "dnssec" {
@@ -21,4 +20,6 @@ resource "cloudflare_dns_record" "dnssec" {
     digest      = cloudflare_zone_dnssec.dnssec[0].digest
   }
   comment = "Cloudflare DNSSEC"
+
+  depends_on = [cloudflare_zone_dnssec.dnssec]
 }
