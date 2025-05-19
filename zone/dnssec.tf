@@ -20,4 +20,6 @@ resource "cloudflare_dns_record" "dnssec" {
     digest      = cloudflare_zone_dnssec.dnssec[0].digest
   }
   comment = "Cloudflare DNSSEC"
+
+  depends_on = cloudflare_zone_dnssec.dnssec[0]
 }
