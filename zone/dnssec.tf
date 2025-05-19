@@ -1,4 +1,4 @@
-resource "cloudflare_zone_dnssec" "dnssec" {
+resource "cloudflare_dns_zone_dnssec" "dnssec" {
   count = var.dnssec == true ? 1 : 0
 
   zone_id             = cloudflare_zone.domain.id
