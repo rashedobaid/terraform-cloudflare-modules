@@ -1,29 +1,25 @@
 locals {
-  processed_records = [
-    for r in var.records : {
-      name     = r.name == "@" || r.name == "root" ? "" : r.name
-      type     = r.type
-      content  = r.value
-      ttl      = r.ttl
-      proxied  = r.proxied != null ? r.proxied : true
-      priority = r.type == "MX" ? r.priority : null
-      comment  = r.comment
-    }
-  ]
+  records = length(var.records) > 0 ? {
+    for idx, record in var.records :
+    try(record.key, format("%s-%s-%s", tostring(record.name), tostring(record.type), tostring(record.content))) => merge(
+      record,
+      {
+        fqdn  = record.name == "@" ? var.zone : "${record.name}.${var.zone}"
+        value = record.content
+      }
+    )
+  } : {}
 }
 
 resource "cloudflare_dns_record" "records" {
-  for_each = {
-    for idx, record in local.processed_records : idx => record
-  }
+  for_each = local.records
 
-  zone_id = var.zone_id
-  name    = each.value.name != "" ? "${each.value.name}.${var.zone}" : var.zone
-  type    = each.value.type
-  content = each.value.content
-  ttl     = each.value.ttl
-
-  proxied  = contains(["A", "CNAME"], each.value.type) ? lookup(each.value, "proxied", true) : null
-  priority = each.value.type == "MX" ? lookup(each.value, "priority", null) : null
-  comment  = each.value.comment
+  zone_id  = var.zone_id
+  name     = each.value.fqdn
+  type     = each.value.type
+  content  = each.value.value
+  ttl      = lookup(each.value, "ttl", 1)
+  proxied  = lookup(each.value, "proxied", false)
+  priority = lookup(each.value, "priority", null)
+  comment  = lookup(each.value, "comment", null)
 }

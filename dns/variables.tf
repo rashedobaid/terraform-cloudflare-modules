@@ -1,4 +1,3 @@
-# DNS Records
 variable "zone_id" {
   description = "Cloudflare Zone ID for the DNS zone where records will be managed."
   type        = string
@@ -9,17 +8,11 @@ variable "zone" {
   type        = string
 }
 
+# DNS Records
 variable "records" {
   description = "List of DNS records to create"
-  type = list(object({
-    name     = string
-    value    = string
-    type     = string
-    ttl      = number
-    priority = optional(number)
-    proxied  = optional(bool)
-    comment  = optional(string)
-  }))
+  type        = list(any)
+  default     = []
 }
 
 # DNSSEC

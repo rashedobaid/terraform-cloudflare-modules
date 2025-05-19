@@ -1,15 +1,15 @@
-# Terragrunt dependency: output.record_name["1"]
-output "record_name" {
-  description = "The names of all Cloudflare DNS records."
+output "resource_addresses_to_ids" {
+  description = "A map of fully qualified Terraform resource addresses to their corresponding Cloudflare DNS record IDs. Useful for referencing specific resources in Terraform state or scripts."
   value = {
-    for record_key, record in cloudflare_dns_record.records : record_key => record.name
+    for record_key, record in cloudflare_dns_record.records :
+    "cloudflare_dns_record.records[\"${record_key}\"]" => record.id
   }
 }
 
-# Terragrunt dependency: output.record_value["1"]
-output "record_value" {
-  description = "The records of all Cloudflare DNS records."
+output "dns_record_ids" {
+  description = "A map of logical DNS record keys (as defined in the input variable or generated key) to their Cloudflare-assigned DNS record IDs."
   value = {
-    for record_key, record in cloudflare_dns_record.records : record_key => record.content
+    for k, record in cloudflare_dns_record.records :
+    k => record.id
   }
 }
