@@ -7,7 +7,7 @@ output "name_servers" {
 }
 
 # DNSSEC
-output "dnssec_id" {
-  description = "DNSSEC ID of the zone"
-  value       = length(cloudflare_dns_record.dnssec) > 0 ? cloudflare_dns_record.dnssec[0].id : null
-}
+# output "dnssec_id" {
+#   description = "DNSSEC ID of the zone"
+#   value       = length(cloudflare_dns_record.dnssec) > 0 ? cloudflare_dns_record.dnssec[0].id : null
+# }
