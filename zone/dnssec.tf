@@ -1,9 +1,9 @@
 resource "cloudflare_zone_dnssec" "dnssec" {
-  count = var.dnssec == null && var.dnssec_multi_signer == null ? 0 : 1
+  count = var.dnssec == true ? 1 : 0
 
   zone_id             = cloudflare_zone.domain.id
   dnssec_multi_signer = var.dnssec_multi_signer
-  dnssec_presigned    = var.dnssec
+  dnssec_presigned    = var.dnssec_presigned
   status              = var.status
 }
 
@@ -21,6 +21,4 @@ resource "cloudflare_dns_record" "dnssec" {
     digest      = cloudflare_zone_dnssec.dnssec[0].digest
   }
   comment = "Cloudflare DNSSEC"
-
-  depends_on = [cloudflare_zone_dnssec.dnssec]
 }

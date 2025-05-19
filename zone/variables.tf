@@ -17,6 +17,12 @@ variable "ssl_level" {
 
 # DNSSEC
 variable "dnssec" {
+  description = "Enable DNSSEC"
+  type        = bool
+  default     = null
+}
+
+variable "dnssec_presigned" {
   description = "Enable DNSSEC presigned"
   type        = bool
   default     = null
