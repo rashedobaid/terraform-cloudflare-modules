@@ -37,6 +37,7 @@ variable "dnssec_multi_signer" {
 variable "status" {
   description = "Desired DNSSEC status: 'active' or 'disabled'."
   type        = string
+  default     = null
   validation {
     condition     = contains(["active", "disabled"], var.status)
     error_message = "status must be either 'active' or 'disabled'."
