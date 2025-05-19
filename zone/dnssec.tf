@@ -1,10 +1,10 @@
-resource "cloudflare_dns_zone_dnssec" "dnssec" {
-  count = var.dnssec == true ? 1 : 0
+# resource "cloudflare_zone_dnssec" "dnssec" {
+#   count = var.dnssec == true ? 1 : 0
 
-  zone_id             = cloudflare_zone.domain.id
-  dnssec_multi_signer = var.dnssec_multi_signer
-  dnssec_presigned    = var.dnssec_presigned
-}
+#   zone_id             = cloudflare_zone.domain.id
+#   dnssec_multi_signer = var.dnssec_multi_signer
+#   dnssec_presigned    = var.dnssec_presigned
+# }
 
 # resource "cloudflare_dns_record" "dnssec" {
 #   count = length(cloudflare_zone_dnssec.dnssec) > 0 ? 1 : 0
