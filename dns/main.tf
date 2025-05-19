@@ -11,7 +11,7 @@ locals {
   } : {}
 }
 
-resource "cloudflare_dns_record" "records" {
+resource "cloudflare_dns_record" "default" {
   for_each = local.records
 
   zone_id  = var.zone_id

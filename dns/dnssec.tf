@@ -1,4 +1,4 @@
-resource "cloudflare_zone_dnssec" "dnssec" {
+resource "cloudflare_zone_dnssec" "default" {
   count = var.dnssec == null && var.dnssec_presigned == null ? 0 : 1
 
   zone_id             = var.zone_id
@@ -7,7 +7,7 @@ resource "cloudflare_zone_dnssec" "dnssec" {
   status              = var.status
 }
 
-resource "cloudflare_dns_record" "dnssec" {
+resource "cloudflare_dns_record" "default" {
   for_each = length(cloudflare_zone_dnssec.dnssec) > 0 ? {
     "dnssec" = cloudflare_zone_dnssec.dnssec[0]
   } : {}
