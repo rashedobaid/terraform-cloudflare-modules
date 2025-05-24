@@ -6,6 +6,7 @@ variable "zone_id" {
 variable "rulesets" {
   description = "Map of ruleset names to their phase and rules"
   type = map(object({
+    name  = string
     kind  = string
     phase = string
     rules = optional(list(object({

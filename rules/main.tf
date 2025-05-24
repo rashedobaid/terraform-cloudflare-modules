@@ -1,7 +1,7 @@
 resource "cloudflare_ruleset" "ruleset" {
   for_each = var.rulesets
 
-  name    = each.key
+  name    = each.value.name
   kind    = each.value.kind
   phase   = each.value.phase
   zone_id = var.zone_id
