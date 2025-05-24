@@ -14,22 +14,3 @@ variable "ssl_level" {
   type        = string
   default     = "strict"
 }
-
-# DNSSEC
-# variable "dnssec" {
-#   description = "Enable DNSSEC"
-#   type        = bool
-#   default     = null
-# }
-
-# variable "dnssec_presigned" {
-#   description = "Enable DNSSEC presigned"
-#   type        = bool
-#   default     = false
-# }
-
-# variable "dnssec_multi_signer" {
-#   description = "Enable DNSSEC multi-signer"
-#   type        = bool
-#   default     = false
-# }
